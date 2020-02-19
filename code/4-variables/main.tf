@@ -80,8 +80,7 @@ resource "azurerm_network_interface" "nic" {
     tags                      = var.tags
 
     ip_configuration {
-        name                          = "${var.prefix}${random_string.morpheme
-.result}NICConfg"
+        name                          = "${var.prefix}${random_string.morpheme.result}NICConfg"
         subnet_id                     = azurerm_subnet.subnet.id
         private_ip_address_allocation  = "dynamic"
         public_ip_address_id          = azurerm_public_ip.publicip.id
@@ -98,8 +97,7 @@ resource "azurerm_virtual_machine" "vm" {
     tags                  = var.tags
 
     storage_os_disk {
-        name              = "${var.prefix}${random_string.morpheme
-.result}OsDisk"
+        name              = "${var.prefix}${random_string.morpheme.result}OsDisk"
         caching           = "ReadWrite"
         create_option     = "FromImage"
         managed_disk_type = "Premium_LRS"
@@ -113,8 +111,7 @@ resource "azurerm_virtual_machine" "vm" {
     }
 
     os_profile {
-        computer_name  = "${var.prefix}${random_string.morpheme
-.result}VM"
+        computer_name  = "${var.prefix}${random_string.morpheme.result}VM"
         admin_username = var.admin_username
         admin_password = var.admin_password
     }
