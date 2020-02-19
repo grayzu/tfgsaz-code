@@ -55,7 +55,7 @@ resource "azurerm_public_ip" "publicip" {
     name                         = "${var.resource_prefix}TFPublicIP"
     location                     = var.location
     resource_group_name          = azurerm_resource_group.rg.name
-    public_ip_address_allocation = "dynamic"
+    allocation_method = "Static"
     }
 
 data "azurerm_public_ip" "publicip" {
@@ -132,6 +132,7 @@ resource "azurerm_virtual_machine" "vm" {
     provisioner "file" {
         connection {
             type = "ssh"
+            host     = azurerm_public_ip.publicip.ip_address
             user     = var.admin_username
             password = var.admin_password
         }
@@ -143,6 +144,7 @@ resource "azurerm_virtual_machine" "vm" {
     provisioner "remote-exec" {
         connection {
             type = "ssh"
+            host     = azurerm_public_ip.publicip.ip_address
             user     = var.admin_username
             password = var.admin_password
         }
