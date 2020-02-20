@@ -32,15 +32,14 @@ resource "azurerm_subnet" "subnet" {
   address_prefix       = "10.0.1.0/24"
 }
 
-/****
 # Create public IP
 resource "azurerm_public_ip" "publicip" {
   name                = "myTFPublicIP"
   location            = "westus2"
   resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
-****/
+
 
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg" {
@@ -76,4 +75,6 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-
+output "ip" {
+  value = azurerm_public_ip.publicip.ip_address
+}
