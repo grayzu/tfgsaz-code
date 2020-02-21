@@ -52,5 +52,5 @@ module "compute" {
   remote_port    = "22"
   vm_os_simple   = "UbuntuServer"
   vm_size        = var.vm_size[var.environment]
-  public_ip_dns  = ["zzdns"]
+  public_ip_dns  = ["zzdns123"]  #update this with a unique address if needed
 }
